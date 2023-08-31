@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@500&display=swap');
+    
+    *{
+      z-index: 1;
+    }
+    body{
+      margin: 0;
+      padding: 0;
+      background-color: #dd73dd4a;
+    }
+    a, h3, p, .button-action{
+      font-family: 'Roboto', sans-serif;
+      text-decoration: none; 
+    }
+    .container {
+      height: 100%;
+      padding: 0px 1rem;
+      margin-left: 100px;
+      margin-right: 100px;
+    }
+    header {
+      display: flex;
+    }
+    /* NAVIGATION TOP BAR */
+    .nav-top-bar{
+      display: flex;
+      width: 100%;
+      top: 0; 
+    }
+    .brand-title{
+      width: 30%;
+      margin: auto 0px;
+    }
+    .brand{ 
+      display: block;
+      height: 100%;
+      left: 0px;
+      text-align: center;
+      font-size: large;
+    }
+    .brand, .brand:visited, .brand:active{
+      color: #ff33be; 
+    }
+    span:hover{
+      position: relative;
+      font-size: x-large;
+      color: 132, 36, 135;
+    }
+    .nav-top-bar-list{ 
+      display: flex;
+      position: relative;
+      width: 100%;
+      list-style: none;
+    }
+    .nav-top-bar-item {
+      padding: 10px;
+      margin-left: auto;  
+    }
+    .nav-top-bar-item a{ 
+      color: black;
+    }
+    .nav-top-bar-link{
+      margin: 0px 5px;
+    }
+ 
+    /* SECTION CONTENT */
+    .section-content{
+      display: flex;
+      flex-direction: row;
+    }
+    .motivate{
+      font-family: 'Lobster', 'sans-serif';
+      font-size: 40px;
+      text-align: center;
+      color: #181517;
+    }
+    .container-content{ 
+      height: 300px;
+    }
+    .row{
+      flex-direction: row;
+    }
+    .col{
+      flex-direction: row;
+    }
+    .row, .col, .col-notes, .col-write-note{
+      display: flex;
+    }
+    .col-notes{
+      flex-direction: column;
+      width: 40%;
+      padding: 10px;
+      margin: 7px;
+      overflow-y: auto;
+      background-color: #fff2fb;
+      border-radius: 6px;
+    }
+    .notes-list-item{
+      position: relative;
+      padding: 7px;
+      margin: 7px 0px;
+      background-color: #ff3ec2;
+      border-radius: 6px;
+      box-shadow: inset 0 -3em 3em #fde2f754, 0.1em 0.1em 0.3em #e7c9e0e0; 
+    }
+    .notes-list-item:hover{
+      position: relative;
+      bottom: 2px;
+      cursor: pointer;
+    }
+    .notes-list-item-content{
+      overflow: hidden;
+      color: #181517;
+      padding: 3px;
+    }
+    .notes-list-item-title{
+      display: inline;
+      color: #fff2fb;
+      margin: 0 auto;
+    }
+    .material-symbols-outlined{
+      display: none;
+      position: relative;
+      float: right;
+      margin: auto 0; 
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 10,
+      'opsz' 48
+    }
+    .action-delete{
+      cursor: pointer;
+    }
+
+    .col-write-note{
+      flex-direction: column;
+      width: 100%;
+      padding: 10px;
+      margin: 7px;
+      background-color: #fff2fb;
+      border-radius: 6px;
+    }
+
+    .title-note, .textarea-write-note{
+      width: auto;
+      padding: 10px;
+      resize:none;
+      color: #181517;
+      border: 0px;
+    }
+    .title-note{
+      height: 5%;
+      background-color: #ffcdef;
+      border-radius: 6px 6px 0px 0px;
+      font-size: large;
+    }
+    .title-note:focus{
+      box-shadow: inset 0 -1em 3em #ffcdef8c, 0.1em 0.1em 0.3em #e7c9e0ad;  
+    }
+    .textarea-write-note{
+      height: 60%;
+      background-color: #ffe6f7;
+      border-radius: 0px 0px 6px 6px;
+      font-size: x-large;
+    }
+    .textarea-write-note:focus{
+      box-shadow: inset 0 -3em 3em #dcbbd554, 0.1em 0.1em 0.3em #e7c9e0ad; 
+      outline: 2px solid #b7a8b2;
+    }
+    
+    .button-action{
+      position: relative;
+      float: right;
+      margin-left: auto;  
+      padding: 10px 20px;
+      font-size: medium;
+      border-radius: 3px;
+    }
+    .button-save-note{
+      margin-top: 10px;
+      color: #ffffff;
+      background-color: #14b545;
+      border: 0px;
+    }
+    .button-save-note:hover{
+      background-color: #16983d;
+    }
+    .button-save-note:active{
+      background-color: #0e5c25;
+    }
+    
+    /** loading bar */
+    .loading{
+      display: default;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #1d0917;
+      opacity: 80%;
+      z-index: 2;
+    }
+    .lds-ripple {
+      display: inline-block;
+      position: absolute;
+      margin: auto auto;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      left: 0px;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-ripple div {
+      position: absolute;
+      border: 4px solid #ff5ccb;
+      opacity: 1;
+      border-radius: 50%;
+      animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    .lds-ripple div:nth-child(2) {
+      animation-delay: -0.5s;
+    }
+    @keyframes lds-ripple {
+      0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+      4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+      }
+      5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+      }
+      100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+      }
+    }
+    /** end loading bar */
+
+  </style>
+</head>
+<body>
+  <script>
+    // check the browser support
+    var localStorage = window.localStorage;
+
+    const actionNote = new function () {
+      // create, edit, delete, copy, paste
+      this.target = ""; // item element
+      this.key = ""; // key
+      this.edit = false;
+      this.delete = false;
+      this.copy = false;
+      this.paste = false;
+
+      this.reset = () => {
+        this.target = "";     // item element
+        this.key = "";        // key
+        this.edit = false;
+        this.delete = false;
+        this.copy = false;
+        this.paste = false;
+      }
+    }
+
+    // localstorage object
+    const locaStorageModel = new function() {
+      this.supportsLocalStorage = true;
+      this.many = 0;
+
+      this.head = "head";         // key head
+      this.tail = "tail";         // key tail
+
+      this.loadListNotes = function() {
+        // get col-notes-id
+        let listNotes = document.getElementById("col-notes-id");
+
+        // get keys on local storage api
+        var values = [],
+            keys = Object.keys(localStorage),
+            i = keys.length;
+
+        // create list of notes
+        while ( i-- ) {
+          let containerItem = document.createElement("div");
+          containerItem.classList.add("notes-list-item");
+
+          let noteItem = document.createElement("div");
+          noteItem.classList.add("notes-list-item-content");
+
+          let title = document.createElement("a");
+          title.classList.add("notes-list-item-title");
+          title.innerHTML = JSON.parse(localStorage.getItem(keys[i])).title.substring(0,10);
+
+          let keyNote = document.createElement("a");
+          keyNote.id = "notes-list-item-key";
+          keyNote.innerHTML = keys[i];
+          keyNote.style.display = "none";
+
+          let action = document.createElement("span");
+          action.classList.add("material-symbols-outlined", "action-detail");
+          action.innerHTML = "arrow_forward_ios";
+
+          let deleteAction = document.createElement("span");
+          deleteAction.classList.add("material-symbols-outlined", "action-delete");
+          deleteAction.innerHTML = "delete";
+
+          noteItem.appendChild(deleteAction);
+          noteItem.appendChild(keyNote);
+          noteItem.appendChild(title);
+          noteItem.appendChild(action);
+          containerItem.appendChild(noteItem);
+          listNotes.appendChild(containerItem);
+        }
+      };
+
+    }
+    function addNoteFirst(key) {
+        // get col-notes-id
+        let listNotes = document.getElementById("col-notes-id");
+
+        let containerItem = document.createElement("div");
+        containerItem.classList.add("notes-list-item");
+
+        let noteItem = document.createElement("div");
+        noteItem.classList.add("notes-list-item-content");
+
+        let title = document.createElement("a");
+        title.classList.add("notes-list-item-title");
+        title.innerHTML = JSON.parse(localStorage.getItem(key)).title.substring(0,10);
+
+        let keyNote = document.createElement("a");
+        keyNote.id = "notes-list-item-key";
+        keyNote.innerHTML = key;
+        keyNote.style.display = "none";
+
+        let action = document.createElement("span");
+        action.classList.add("material-symbols-outlined", "action-detail");
+        action.innerHTML = "arrow_forward_ios";
+        
+        let deleteAction = document.createElement("span");
+        deleteAction.classList.add("material-symbols-outlined", "action-delete");
+        deleteAction.innerHTML = "delete";
+
+        noteItem.appendChild(deleteAction);
+        noteItem.appendChild(keyNote);
+        noteItem.appendChild(title);
+        noteItem.appendChild(action);
+        containerItem.appendChild(noteItem);
+
+        // put in first item
+        listNotes.insertBefore(containerItem, listNotes.firstChild);
+        
+        // add event listener
+        containerItem.addEventListener("click", (e) => {
+          let noteContainer = e.target;
+          let key = noteContainer.querySelector("#notes-list-item-key"); 
+
+          // check container has key element
+          if (key != null) {
+            key = key.innerHTML;
+            let note = JSON.parse(localStorage.getItem(key));
+
+            // check localStorage key exists
+            if (note != null) {
+              // get textarea-write-note-id
+              let textarea = document.getElementById("textarea-write-note-id");
+              // get input title-note-id id
+              let inputTitle = document.getElementById("title-note-id");
+              inputTitle.value = note.title;
+              textarea.value = note.description;
+              noteContainer.querySelector(".action-detail").style.display = "inline"; 
+
+              actionNote.key = key;
+              actionNote.edit = true;
+              
+              // hide action note
+              if (actionNote.target != "") {
+                actionNote.target.querySelector(".action-detail").style.display = "none"; 
+              }
+              if (actionNote.target === e.target){
+                actionNote.reset();
+              }else { 
+                actionNote.target = e.target;
+              }
+              
+            }
+          }
+        });
+
+        containerItem.addEventListener("mouseenter", (e) => {
+          let noteContainer = e.target;
+          if (e.target == null) {return;}
+          let deleteAction = noteContainer.querySelector(".action-delete");
+
+          // show up delete action
+          deleteAction.style.display = "inline"; 
+          deleteAction.addEventListener("click", (e) => {
+            let key = noteContainer.querySelector("#notes-list-item-key");
+
+            // check key element exists
+            if (key != null) {
+              key = key.innerHTML;
+              let note = JSON.parse(localStorage.getItem(key));
+              if (note != null) {
+                localStorage.removeItem(key);
+                noteContainer.remove();
+                
+                if (actionNote.key === key){
+                  // get textarea-write-note-id
+                  let textarea = document.getElementById("textarea-write-note-id");
+                  // get input title-note-id id
+                  let inputTitle = document.getElementById("title-note-id");
+                  inputTitle.value = "";
+                  textarea.value = "";
+                  
+                  actionNote.reset();
+                }
+              }
+            }
+          });
+        });
+        containerItem.addEventListener("mouseleave", (e) => {
+          let noteContainer = e.target;
+          let deleteAction = noteContainer.querySelector(".action-delete");
+          deleteAction.style.display = "none"; 
+          deleteAction.addEventListener("click", (e) => {});
+        });
+      }
+  </script>
+
+  <div class="loading" id="loading-id">
+    <div class="lds-ripple"><div></div><div></div></div>
+  </div>
+  <div class="container">
+    <header> 
+      <nav class="nav-top-bar" id="nav-top-bar">
+          <div class="brand-title">
+              <a href="" class="brand">NOTE <span>Everythings</span></a>
+          </div>
+          <ul class="nav-top-bar-list">
+              <li class="nav-top-bar-item">
+                <a class="nav-top-bar-link" href="#">About</a>
+                <a class="nav-top-bar-link" href="#">Sign In</a>
+              </li>
+          </ul>
+      </nav>
+    </header>
+    <section id="section-content">
+      <h3 class="motivate">Write it</h3>
+      <div class="row container-content">
+        <div class="col-notes" id="col-notes-id">
+          <script>
+            // load start local storage
+            if (typeof localStorage !== "undefined" && localStorage !== void(0) && localStorage) {
+              locaStorageModel.loadListNotes();
+
+              // load many
+              locaStorageModel.many = localStorage.getItem(locaStorageModel.many) === null ? 0 : localStorage.getItem(locaStorageModel.many);
+            } else {
+              locaStorageModel.supportsLocalStorage = false;
+              alert("No localStorage found!");
+            }
+          </script>
+        </div>
+        <div class="col-write-note">
+          <input type="text" name="title" class="title-note" id="title-note-id" placeholder="Title">
+          <textarea class="textarea-write-note" id="textarea-write-note-id" placeholder="Write it!" minlength="0" maxlength="1000"></textarea> 
+          <div class="button-action-container">
+            <input type="button" value="Save" class="button-action button-save-note" id="button-save-note-id">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    // loading id
+    var loadingId = document.getElementById("loading-id");
+
+    // window successfull load
+    window.addEventListener("load", (event) => {
+      // load start local storage
+      if (typeof localStorage !== "undefined" && localStorage !== void(0) && localStorage) {
+        // set loading id to display none
+        loadingId.style.display = "none";
+      }
+
+      // get button-save-note-id
+      let buttonSaveNoteId = document.getElementById("button-save-note-id");
+
+      // get textarea-write-note-id
+      let textarea = document.getElementById("textarea-write-note-id");
+      // get input title-note-id id
+      let inputTitle = document.getElementById("title-note-id");
+
+      // buttonSaveNoteId on click event
+      buttonSaveNoteId.addEventListener("click", (event) => {
+
+        // get value inputTitle and textarea 
+        if (inputTitle.value === "" && textarea.value === ""){
+          // error message
+          alert("Please enter a title or note to save the note.");
+          return;
+        }
+
+        // save inputtitle and textarea to the local storage
+        let data = {
+          "title" : inputTitle.value,
+          "description" : textarea.value
+        }
+
+        // check inputtitle is empty
+        if (inputTitle.value === ""){
+          data.title = textarea.value.split(" ").shift();
+        }
+
+        // setup key 
+        // remove whitespaces from title and make 10 characters
+        let key = data.title.replace(" ", "").substring(0,10);
+
+        // check if key exists in local storage
+        if (localStorage.getItem(key)){
+          // generate random string 10 characters
+          key = key + Date.now().toUTCString;
+        }
+
+        // edit condition
+        if (actionNote.edit){
+          localStorage.removeItem(actionNote.key);
+        }
+
+        // save to local storage
+        localStorage.setItem(key, 
+          JSON.stringify(
+            data
+          ));
+
+        // update element
+        if (actionNote.target){
+          let title = actionNote.target.querySelector(".notes-list-item-title");
+          let keyNote = actionNote.target.querySelector("#notes-list-item-key");
+          actionNote.target.querySelector(".action-detail").style.display = "none"; 
+          if (title != null && keyNote != null) {
+            title.innerHTML = data.title;
+            keyNote.innerHTML = key;
+          }
+        } else {
+          // add element to list notes
+          addNoteFirst(key);
+        }
+
+        inputTitle.value = "";
+        textarea.value = "";
+        
+        actionNote.reset();
+      });
+
+      textarea.addEventListener("change", (e) => {
+        // check support of localStorage
+        if (!locaStorageModel.supportsLocalStorage) { 
+          alert("No localStorage found!");
+          return; 
+        }
+
+        if (e.target.value != undefined && e.target.value) {
+          // visible buttonSaveNoteId
+          buttonSaveNoteId.style.visibility = "visible";
+        } else {
+          // hidden buttonSaveNoteId
+          buttonSaveNoteId.style.visibility = "hidden";
+        }
+      });
+
+      document.querySelectorAll(".notes-list-item").forEach((item) => {
+        // click event on note container
+        item.addEventListener("click", (e) => {
+          let noteContainer = e.target;
+          let key = noteContainer.querySelector("#notes-list-item-key"); 
+
+          // handle key is null when clicking several times
+          if (key != null) {
+            key = key.innerHTML;
+            let note = JSON.parse(localStorage.getItem(key));
+
+            // check localStorage key exists
+            if (note != null) {
+              inputTitle.value = note.title;
+              textarea.value = note.description;
+
+              // detail arrow 
+              noteContainer.querySelector(".action-detail").style.display = "inline"; 
+
+              actionNote.key = key;
+              actionNote.edit = true;
+              
+              // hide action note
+              if (actionNote.target != "") {
+                actionNote.target.querySelector(".action-detail").style.display = "none"; 
+              }
+
+              // check note container is same with current container
+              if (actionNote.target === e.target){
+                actionNote.reset();
+                inputTitle.value = "";
+                textarea.value = "";
+              }else { 
+                actionNote.target = e.target;
+              }
+            }
+          }
+        });
+
+        item.addEventListener("mouseenter", (e) => {
+          let noteContainer = e.target;
+          if (e.target == null) {return;}
+          let deleteAction = noteContainer.querySelector(".action-delete");
+
+          // show up delete action
+          deleteAction.style.display = "inline"; 
+
+          // add click event
+          deleteAction.addEventListener("click", (e) => {
+            let key = noteContainer.querySelector("#notes-list-item-key");
+
+            // check container has key
+            if (key != null) {
+              key = key.innerHTML;
+              let note = JSON.parse(localStorage.getItem(key));
+
+              // check localStorage key exists
+              if (note != null) {
+                localStorage.removeItem(key);
+                noteContainer.remove();
+                
+                if (actionNote.key === key){
+                  // get textarea-write-note-id
+                  let textarea = document.getElementById("textarea-write-note-id");
+                  // get input title-note-id id
+                  let inputTitle = document.getElementById("title-note-id");
+                  inputTitle.value = "";
+                  textarea.value = "";
+                  
+                  actionNote.reset();
+                }
+              }
+            }
+          });
+        });
+        item.addEventListener("mouseleave", (e) => {
+          let noteContainer = e.target;
+          let deleteAction = noteContainer.querySelector(".action-delete");
+
+          // hide delete action
+          deleteAction.style.display = "none"; 
+        });
+      });
+    });
+  </script>
+</body>
+</html>
